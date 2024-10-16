@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* General Styles */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: 'Poppins', sans-serif;
+background-color: #f4f7f6;
+color: #333;
+display: flex;
+height: 100vh;
+overflow: hidden;
+}
+
+.container {
+display: flex;
+flex-direction: row;
+width: 100%;
+min-height: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+background-color: #1e272e;
+padding: 20px;
+width: 250px;
+color: white;
+position: relative;
+box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+font-size: 28px;
+margin-bottom: 30px;
+font-weight: 600;
+}
+
+.sidebar a {
+color: #fff;
+text-decoration: none;
+display: block;
+padding: 10px 0;
+font-size: 16px;
+position: relative;
+margin-bottom: 15px;
+transition: background 0.3s, padding-left 0.3s;
+}
+
+.sidebar a:hover {
+background-color: #576574;
+border-radius: 5px;
+padding-left: 10px;
+}
+
+.sidebar a::before {
+content: '→';
+position: absolute;
+left: -20px;
+font-size: 18px;
+}
+
+.dashboard-header {
+color: #fff;
+font-size: 24px;
+font-weight: 600;
+margin-top: 20px;
+}
+
+/* Content Section */
+.content {
+flex: 1;
+padding: 30px;
+background-color: #f4f7f6;
+overflow-y: auto;
+transition: background 0.5s ease-in-out;
+}
+
+.progress-tracking h3 {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.progress-bar {
+width: 100%;
+background-color: #e1e1e1;
+border-radius: 30px;
+height: 20px;
+margin-bottom: 20px;
+}
+
+.progress-bar-inner {
+height: 20px;
+background-color: #27ae60;
+border-radius: 30px;
+width: 50%;
+transition: width 0.5s;
+}
+
+.referral-section {
+margin-top: 20px;
+}
+
+.referral-section h3 {
+font-size: 18px;
+margin-bottom: 15px;
+}
+
+.btn {
+background-color: #3498db;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+font-size: 14px;
+margin-right: 10px;
+transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+background-color: #2980b9;
+transform: scale(1.05);
+}
+
+.transaction-section h3 {
+font-size: 22px;
+margin-top: 40px;
+margin-bottom: 20px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 20px;
+}
+
+table th, table td {
+padding: 12px;
+text-align: left;
+border: 1px solid #ddd;
+}
+
+table th {
+background-color: #34495e;
+color: white;
+font-weight: 600;
+}
+
+table tr:nth-child(even) {
+background-color: #f4f7f6;
+}
+
+table tr:hover {
+background-color: #ecf0f1;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+.container {
+flex-direction: column;
+}
+
+.sidebar {
+width: 100%;
+}
+
+.content {
+padding: 15px;
+}
+
+.btn {
+width: 100%;
+margin-bottom: 10px;
+}
+}
+
+/* Effects */
+.content:hover {
+background-color: #e6f7ff;
+}
+
+.transaction-section tr:hover td {
+background-color: #dff0d8;
+transition: background 0.3s ease;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>Dashboard</h2>
+<div class="dashboard-header">
+Welcome, <span id="userName">Naye Pankh</span>
+</div>
+<a href="#">Overview</a>
+<a href="#">Transactions</a>
+<a href="#">Referral Program</a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+<!-- Goal Achieved Section -->
+<div class="progress-tracking">
+<h3>Goal Achieved</h3>
+<div class="progress-bar">
+<div class="progress-bar-inner" id="progressBar" style="width: 50%;"></div>
+</div>
+<p>Total Donations: ₹<span id="totalDonations">500</span> (Through your referral)</p>
+</div>
+
+<!-- Referral Section -->
+<div class="referral-section">
+<h3>Your Referral Code: <span id="referralCode">ABC123</span></h3>
+<button class="btn" onclick="copyReferralLink()">Copy Donation Link</button>
+<button class="btn" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+</div>
+
+<!-- Transactions Section -->
+<div class="transaction-section">
+<h3>Transaction History</h3>
+<table>
+<thead>
+<tr>
+<th>Donor Name</th>
+<th>Amount (₹)</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody id="transactionTable">
+<tr>
+<td>Gulshan kumar pawan</td>
+<td>₹200</td>
+<td>2024-10-01</td>
+</tr>
+<tr>
+<td>Akshay kumar </td>
+<td>₹300</td>
+<td>2024-10-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>
